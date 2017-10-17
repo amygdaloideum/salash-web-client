@@ -1,0 +1,61 @@
+.menu {
+  color: $ebonyclay;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.menu > a {
+  display: flex;
+  text-align: center;
+  flex: 1 0 0px;
+  flex-direction: column;  
+  padding: 25px 10px 25px 10px;
+  /*border-top: 1px solid $ebonyclay;*/
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+
+.find {
+  color: $turquoise;
+}
+
+.create {
+  color: $green;
+}
+
+.about {
+  color: $yellow;
+}
+
+.user {
+  color: $pink;
+}
+
+.menu i {
+  font-size: 2em;
+}
+
+.menu a > div {
+  width: 100%;
+}
+
+.menu > a:hover {
+  color: grey;
+}
+
+@media (max-width: 450px) {
+  .menu {
+    flex-direction: row;
+    justify-content: space-around;    
+  }
+
+  .menu > a {
+    font-size: 1.2em;
+  }
+
+  .menu > a i {
+  }
+}

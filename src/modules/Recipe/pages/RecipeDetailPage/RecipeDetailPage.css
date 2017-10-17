@@ -1,0 +1,37 @@
+.single-recipe h1 {
+  font-weight: 300;
+}
+
+.single-recipe p {
+  padding: 20px;
+}
+
+.single-recipe .categories {
+  color: #888;
+}
+
+.single-recipe h3 {
+  font-weight: 500;
+}
+
+.single-recipe table {
+  padding: 10px;
+}
+
+.image-wrapper {
+  height: 200px;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 4px solid #EC4863;
+  margin-bottom: 25px;
+}
+
+.image-wrapper img {
+  width: 100%;
+  object-fit: contain;
+  transform: translateY(-30%);
+}
+
+.int-buttons > * {
+  margin: 5px;
+}

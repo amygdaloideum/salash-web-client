@@ -1,0 +1,32 @@
+.facebook {
+  color:#3B5998;
+}
+
+.google {
+  color: #dc4e41;
+}
+
+.twitter {
+  color: #3498db;
+}
+
+.social-sign-in {
+  padding: .7rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0px;
+  width: 30%;
+  text-align: center;
+  font-size: 3em;
+  transition: all 0.2s linear;
+}
+
+.social-sign-in > span{
+  margin-top: 5px;
+  font-size: 0.4em;
+}
+
+.social-sign-in:hover{
+  color: grey;
+}

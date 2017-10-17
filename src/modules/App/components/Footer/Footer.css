@@ -1,0 +1,22 @@
+.footer{
+  max-width: 980px;
+  margin: auto;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer span{
+  font-size: 1.2em;
+  color: #EF4836;
+}
+
+.footer p{
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: lightgray;
+}
+
+.footer a{
+  text-decoration: none;
+  font-weight: 700;
+}

@@ -1,0 +1,72 @@
+.interaction-button {
+  display: inline-flex;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s linear;
+  width: 125px;
+  font-size: 1.1em;
+}
+
+.interaction-button i {
+  padding-right: 5px;
+  transition: all 0.5s linear;
+}
+
+/* LOVE BUTTON */
+
+.love-button-inactive {
+  border: 1px solid $pink;
+  color: $pink;
+}
+
+.love-button-active {
+  background: $pink;
+  border: 1px solid $pink;
+  color: white;
+}
+
+.love-button-active:hover {
+  background: $pinkDark;
+}
+
+/* FAVORITE BUTTON */
+
+.favorite-button-inactive {
+  border: 1px solid $orange;
+  color: $orange
+}
+
+.favorite-button-active {
+  background: $orange;
+  border: 1px solid $orange;
+  color: white;
+}
+
+.favorite-button-active:hover{
+  background: $orangeDark;
+}
+
+/* DELETE BUTTON */
+
+.delete-button {
+  background: $ebonyclay;
+  color: white;
+}
+
+.delete-button:hover {
+  background: $ebonyclayDark;
+}
+
+/* EDIT BUTTON */
+
+.edit-button {
+  /*border: 1px solid $turquoise;*/
+  background: $turquoise;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.edit-button:hover {
+  background: $turquoiseDark;
+}
