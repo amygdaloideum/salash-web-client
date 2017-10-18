@@ -1,9 +1,9 @@
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
 import styles from './RecipeCreatedPage.css';
 
-class RecipeCreatedPage extends Component {
+class RecipeCreatedPage extends React.Component {
   render() {
     return (
       <div className={styles.wrapper}>

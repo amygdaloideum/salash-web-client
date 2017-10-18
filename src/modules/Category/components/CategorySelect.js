@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 
 import styles from './CategorySelect.css';
 
-class CategorySelect extends Component {
+class CategorySelect extends React.Component {
   constructor(props) {
     super(props);
   }

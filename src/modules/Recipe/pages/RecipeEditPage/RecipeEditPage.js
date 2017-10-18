@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import callApi from '../../../../util/apiCaller';
 
@@ -15,7 +15,7 @@ import { fetchRecipe, updateRecipeRequest } from '../../RecipeActions';
 import { getCategories } from '../../../Category/CategoryReducer';
 import { getRecipe } from '../../RecipeReducer';
 
-export class RecipeEditPage extends Component {
+export class RecipeEditPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchCategories());
   }
@@ -47,10 +47,5 @@ function mapStateToProps(state, props) {
     recipe: getRecipe(state, props.params.cuid),
   };
 }
-
-RecipeEditPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  recipe: React.PropTypes.object.isRequired
-};
 
 export default connect(mapStateToProps)(RecipeEditPage);

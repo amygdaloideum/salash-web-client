@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { addRecipeRequest } from '../../RecipeActions';
 import callApi from '../../../../util/apiCaller';
@@ -14,7 +14,7 @@ import { fetchCategories } from '../../../Category/CategoryActions';
 // Import Selectors
 import { getCategories } from '../../../Category/CategoryReducer';
 
-export class RecipeCreationPage extends Component {
+export class RecipeCreationPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchCategories());
   }
@@ -49,9 +49,5 @@ function mapStateToProps(state) {
     categories: getCategories(state),
   };
 }
-
-RecipeCreationPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
 
 export default connect(mapStateToProps)(RecipeCreationPage);

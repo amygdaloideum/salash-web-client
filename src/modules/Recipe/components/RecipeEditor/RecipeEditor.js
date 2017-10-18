@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 let RichTextEditor, RichTextEditorDefault;
 
 import styles from './RecipeEditor.css';
 
-export default class RecipeEditor extends Component {
+export default class RecipeEditor extends React.Component {
 
   constructor () {
     super()

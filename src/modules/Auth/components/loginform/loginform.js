@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { renderInput, SubmitButton } from '../../../../components/form/formInputs';
 import { Link } from 'react-router';

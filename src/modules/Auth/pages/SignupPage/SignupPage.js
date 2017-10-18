@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
@@ -24,7 +24,5 @@ export function SignupPage(props) {
 function mapStateToProps(state, props) {
   return {};
 }
-
-SignupPage.propTypes = {};
 
 export default connect(mapStateToProps)(SignupPage);

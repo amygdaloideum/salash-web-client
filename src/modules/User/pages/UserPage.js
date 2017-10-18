@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import callApi from '../../../util/apiCaller';
 import { browserHistory } from 'react-router';
@@ -13,7 +13,7 @@ import { fetchRecipe } from '../../Recipe/RecipeActions';
 // Import Selectors
 import { getUser } from '../UserReducer';
 
-export class UserPage extends Component {
+export class UserPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchUser(this.props.params.id));
   }
@@ -57,10 +57,5 @@ function mapStateToProps(state) {
     user: getUser(state),
   };
 }
-
-UserPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
-};
 
 export default connect(mapStateToProps)(UserPage);

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { renderTextarea, renderInput, SubmitButtonNoValidation } from '../../../../components/form/formInputs';
 import CategorySelect from '../../../Category/components/CategorySelect';

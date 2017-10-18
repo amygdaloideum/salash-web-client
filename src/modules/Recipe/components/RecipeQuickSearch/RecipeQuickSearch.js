@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 // Import Style
@@ -29,13 +29,6 @@ let RecipeQuickSearch = props => (
     </div>
   </form>
 );
-
-RecipeQuickSearch.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  })).isRequired,
-  handleQuickSearch: PropTypes.func.isRequired,
-};
 
 RecipeQuickSearch = reduxForm({
   form: 'quickSearchForm',

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 
@@ -22,7 +22,5 @@ export function NotFoundPage(props) {
 function mapStateToProps(state, props) {
   return {};
 }
-
-NotFoundPage.propTypes = {};
 
 export default connect(mapStateToProps)(NotFoundPage);

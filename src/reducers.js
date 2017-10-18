@@ -4,7 +4,7 @@
 import { combineReducers } from 'redux';
 
 // Import Reducers
-import app from './modules/App/AppReducer';
+import app from './modules/App/app-reducer';
 import recipes from './modules/Recipe/RecipeReducer';
 import categories from './modules/Category/CategoryReducer';
 import auth from './modules/Auth/AuthReducer';

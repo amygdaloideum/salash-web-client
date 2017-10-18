@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React  from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
@@ -19,7 +19,7 @@ import {
 // Import Selectors
 import { getRecipe } from '../../RecipeReducer';
 
-class RecipeDetailsPage extends Component {
+class RecipeDetailsPage extends React.Component {
 
   createMarkup = markup => ({ __html: markup });
 

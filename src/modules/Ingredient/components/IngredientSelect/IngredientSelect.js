@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Field } from 'redux-form';
 
 import styles from './IngredientSelect.css';
 
-class ingredientsSelect extends Component {
+class ingredientsSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // Import Style
 import styles from './Ingredient.css';
 
-class Ingredient extends Component {
+class Ingredient extends React.Component {
   render() {
     return (
     );
@@ -18,9 +18,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {};
-};
-
-Ingredient.propTypes = {
 };
 
 export default connect(

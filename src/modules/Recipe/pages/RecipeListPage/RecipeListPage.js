@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 // Import Components
@@ -9,12 +9,11 @@ import { searchRecipes } from '../../RecipeActions';
 import { toggleAddRecipe } from '../../../App/AppActions';
 
 // Import Selectors
-import { getShowAddRecipe } from '../../../App/AppReducer';
 import { getRecipes } from '../../RecipeReducer';
 
 import { jsToStringQuery, queryToAffirmation } from '../../../../util/queryBuilder';
 
-class RecipeListPage extends Component {
+class RecipeListPage extends React.Component {
   componentDidMount() {
     const url = jsToStringQuery('recipes/search', this.props.location.query);
     this.props.dispatch(searchRecipes(url));
@@ -43,17 +42,8 @@ RecipeListPage.need = [({ query }) => {
 // Retrieve data from store as props
 function mapStateToProps(state) {
   return {
-    showAddRecipe: getShowAddRecipe(state),
     recipes: getRecipes(state),
   };
 }
-
-RecipeListPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
-RecipeListPage.contextTypes = {
-  router: React.PropTypes.object,
-};
 
 export default connect(mapStateToProps)(RecipeListPage);

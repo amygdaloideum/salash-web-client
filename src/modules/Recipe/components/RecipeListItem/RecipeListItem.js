@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
 // Import Style
@@ -37,12 +37,5 @@ function RecipeListItem({ recipe  }) {
     </div>
   );
 }
-
-RecipeListItem.propTypes = {
-  recipe: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-  }).isRequired
-};
 
 export default RecipeListItem;

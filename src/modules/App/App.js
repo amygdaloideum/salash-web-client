@@ -1,11 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Import Style
 import styles from './App.css';
 
 // Import Components
-import DevTools from './components/DevTools';
 import Toolbar from './components/Toolbar/Toolbar';
 import Footer from './components/Footer/Footer';
 
@@ -32,15 +31,6 @@ export class App extends Component {
     );
   }
 }
-
-App.contextTypes = {
-  router: React.PropTypes.object,
-};
-
-App.propTypes = {
-  children: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
 
 // Retrieve data from store as props
 function mapStateToProps(store) {

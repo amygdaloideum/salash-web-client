@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { loginUserRequest, facebookLoginRequest } from '../../AuthActions';
@@ -11,7 +11,7 @@ import { getMessage } from '../../AuthReducer';
 // Import Style
 import styles from './LoginPage.css';
 
-class LoginPage extends Component {
+class LoginPage extends React.Component {
 
   handleLogin = ({email, password}) => {
     this.props.dispatch(loginUserRequest({ email, password }));
@@ -54,7 +54,5 @@ function mapStateToProps(state, props) {
     message: getMessage(state)
   };
 }
-
-LoginPage.propTypes = {};
 
 export default connect(mapStateToProps)(LoginPage);

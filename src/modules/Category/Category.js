@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // Import Style
 import styles from './Category.css';
 
-class Category extends Component {
+class Category extends React.Component {
   render() {
     return (
     );
@@ -18,9 +18,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {};
-};
-
-Category.propTypes = {
 };
 
 export default connect(

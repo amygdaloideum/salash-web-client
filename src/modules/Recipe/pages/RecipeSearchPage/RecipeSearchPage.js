@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import slug from 'limax';
@@ -16,7 +16,7 @@ import { fetchCategories } from '../../../Category/CategoryActions';
 // Import Selectors
 import { getCategories } from '../../../Category/CategoryReducer';
 
-class RecipeSearchPage extends Component {
+class RecipeSearchPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchCategories());
   }

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
 // Import Style
@@ -40,13 +40,5 @@ export function Header(props, context) {
     </header>
   );
 }
-//context.router.isActive('/', true) ? <BigTitle /> : <SmallTitle />
-Header.contextTypes = {
-  router: React.PropTypes.object,
-};
-
-Header.propTypes = {
-  switchLanguage: PropTypes.func.isRequired,
-};
 
 export default Header;

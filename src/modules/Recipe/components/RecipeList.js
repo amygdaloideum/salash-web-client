@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 // Import Components
 import RecipeListItem from './RecipeListItem/RecipeListItem';
@@ -22,13 +22,5 @@ function RecipeList(props) {
     </div>
   );
 }
-
-RecipeList.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    cuid: PropTypes.string.isRequired,
-  })).isRequired
-};
 
 export default RecipeList;

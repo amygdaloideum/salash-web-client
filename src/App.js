@@ -21,7 +21,3 @@ export default function App(props) {
     </Provider>
   );
 }
-
-App.propTypes = {
-  store: React.PropTypes.object.isRequired,
-};

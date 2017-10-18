@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Field } from 'redux-form';
 
 import styles from './IngredientAndAmountSelect.css';

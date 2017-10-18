@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Field, Fields, FieldArray, reduxForm } from 'redux-form';
 import RecipeEditor from '../RecipeEditor/RecipeEditor';
 import CategorySelect from '../../../Category/components/CategorySelect';
