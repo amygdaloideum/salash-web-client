@@ -13,14 +13,14 @@ class Navbar extends React.Component {
             <a className="navbar-item">
               <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
             </a>
-            <span className="navbar-burger burger" onClick={this.props.onBurgerClick}>
+            <span className={`navbar-burger burger ${this.props.showBurger ? 'is-active' : ''}`} onClick={() => this.props.onBurgerClick}>
               <span></span>
               <span></span>
               <span></span>
             </span>
           </div>
         </div>
-        <div id="navbarMenuHeroA" className="navbar-menu">
+        <div id="navbarMenuHeroA" className={`navbar-menu ${this.props.showBurger ? 'is-active' : ''}`}>
           <div className="navbar-end">
             <a className="navbar-item is-active">Find</a>
             <a className="navbar-item">Share</a>

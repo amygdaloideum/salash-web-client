@@ -3,7 +3,7 @@ export default class ActionCreator {
     this. type = type;
   }
 
-  create(payload) {
+  create = (payload) => {
     return { type: this.type, payload };
   }
 }
