@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 // Import Components
-import styles from './RecipeDetailPage.css';
 import { LoveButton, FavButton, DeleteButton, EditButton } from '../../../../components/InteractionButtons/InteractionButtons'
 
 // Import Actions
@@ -53,18 +52,18 @@ class RecipeDetailsPage extends React.Component {
     return (
       <div>
         {
-          !this.props.recipe ? <div className={styles['recipe-not-']}>
+          !this.props.recipe ? <div>
             <h1> Recipe not found</h1>
           </div> : null
         }
         {
         this.props.recipe ?
-        <div className={styles['single-recipe']}>
+        <div>
           {
-            this.props.recipe.imageUrl ? <div className={styles['image-wrapper']}><img src={this.props.recipe.imageUrl} /></div> : null
+            this.props.recipe.imageUrl ? <div><img src={this.props.recipe.imageUrl} /></div> : null
           }
           <h1>{this.props.recipe.title}</h1>
-          <div className={styles['categories']}>
+          <div>
             {this.props.recipe.categories.map((cat, i) => (
               <span key={i}>{cat.name}</span>
             ))}
@@ -87,12 +86,12 @@ class RecipeDetailsPage extends React.Component {
           </div>
           <h3>Instructions</h3>
           <div dangerouslySetInnerHTML={this.createMarkup(this.props.recipe.instructions)} />
-          <div className={styles['int-buttons']}>
+          <div>
             <LoveButton loveAction={this.love} unloveAction={this.unlove} interactions={this.props.recipe.interactions} />
             <FavButton favoriteAction={this.favorite} unfavoriteAction={this.unfavorite} interactions={this.props.recipe.interactions} />
           </div>
           {isAuthor ? (
-            <div className={styles['int-buttons']}>
+            <div>
               <DeleteButton deleteAction={this.delete} />
               <EditButton editAction={this.edit} />
             </div>

@@ -4,14 +4,13 @@ import { renderTextarea, renderInput, SubmitButtonNoValidation } from '../../../
 import CategorySelect from '../../../Category/components/CategorySelect';
 import IngredientSelect from '../../../Ingredient/components/IngredientSelect/IngredientSelect';
 
-import styles from './RecipeSearchForm.css';
 
 const validate = values => {
   const errors = {};
 }
 
 let RecipeSearchForm = ({ handleSubmit, handleSearch, categories, invalid, submitting, pristine }) => (
-  <form className={styles['search-form']}>
+  <form>
     <div>
       <Field name="title" icon="fa-pencil-square-o" component={renderInput} type="text" label="Title" />
     </div>
@@ -26,7 +25,7 @@ let RecipeSearchForm = ({ handleSubmit, handleSearch, categories, invalid, submi
       <Field name="ingredients" component={IngredientSelect} />
     </div>
 
-    <div className={styles.submitbutton}>
+    <div>
       <SubmitButtonNoValidation submit={handleSubmit(handleSearch)} text='find recipes' />
     </div>
 

@@ -5,9 +5,6 @@ import callApi from '../../../../util/apiCaller';
 
 import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm'; 
 
-// Import Style
-import styles from './RecipeCreationPage.css';
-
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryActions';
 
@@ -32,7 +29,7 @@ export class RecipeCreationPage extends React.Component {
 
   render() {
     return (
-      <div className={styles.create}>
+      <div>
         <h1>add recipe</h1>
         <RecipeCreateForm initialValues={this.initialValues} handleCreate={this.handleCreate} categories={this.props.categories}/>
       </div>

@@ -4,9 +4,6 @@ import callApi from '../../../../util/apiCaller';
 
 import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm';
 
-// Import Style
-import styles from './RecipeEditPage.css';
-
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryActions';
 import { fetchRecipe, updateRecipeRequest } from '../../RecipeActions';
@@ -26,7 +23,7 @@ export class RecipeEditPage extends React.Component {
 
   render() {
     return (
-      <div className={styles.create}>
+      <div>
         <h1>Edit recipe</h1>
         <RecipeCreateForm editMode="true" initialValues={this.props.recipe} handleCreate={this.handleCreate} categories={this.props.categories} />
       </div>

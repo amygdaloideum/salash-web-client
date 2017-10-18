@@ -1,23 +1,21 @@
 import React from 'react';
 
-import styles from './SocialSignInButtons.css';
-
 export const FacebookButton = ({auth}) => (
-  <a onClick={auth} className={`${styles['social-sign-in']} ${styles.facebook}`}>
+  <a onClick={auth} >
   <i className="fa fa-facebook"></i>
   <span>facebook</span>  
   </a>
 );
 
 export const GoogleButton = ({auth}) => (
-  <a onClick={()=>{auth()}} className={`${styles['social-sign-in']} ${styles.google}`}>
+  <a onClick={()=>{auth()}} >
   <i className="fa fa-google-plus"></i>
   <span>google+</span>  
   </a>
 );
 
 export const TwitterButton = ({auth}) => (
-  <a onClick={()=>{auth()}} className={`${styles['social-sign-in']} ${styles.twitter}`}>
+  <a onClick={()=>{auth()}} >
   <i className="fa fa-twitter"></i>
   <span>twitter</span>
   </a>

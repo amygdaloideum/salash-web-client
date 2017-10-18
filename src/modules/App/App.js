@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// Import Style
-import styles from './App.css';
-
 // Import Components
 import Toolbar from './components/Toolbar/Toolbar';
 import Footer from './components/Footer/Footer';
@@ -23,7 +20,7 @@ export class App extends Component {
     return (
       <div>
         {/*!this.context.router.isActive('/', true) ? <Toolbar user={this.props.user} /> : null*/}
-        <div className={styles.container}>
+        <div>
           {this.props.children}
         </div>
         <Footer />

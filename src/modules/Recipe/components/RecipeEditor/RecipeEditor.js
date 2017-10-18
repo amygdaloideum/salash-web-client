@@ -1,8 +1,6 @@
 import React from 'react';
 let RichTextEditor, RichTextEditorDefault;
 
-import styles from './RecipeEditor.css';
-
 export default class RecipeEditor extends React.Component {
 
   constructor () {
@@ -60,7 +58,6 @@ export default class RecipeEditor extends React.Component {
     if (this.state.shouldRender) {
       return (
         <RichTextEditorDefault
-          className={styles.editor}
           value={this.state.value}
           onChange={this.onChange}
           toolbarConfig={toolbarConfig}

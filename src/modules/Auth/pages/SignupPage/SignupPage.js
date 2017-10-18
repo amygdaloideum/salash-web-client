@@ -1,15 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
-
-// Import Style
-//import styles from './LoginPage.css';
-
 
 export function SignupPage(props) {
   return (
     <div>
-      <Helmet title='Login' />
       <form action="/auth/signup" method="post">
         <h3>Signup</h3>
         <input type='text' name="email" placeholder='email'/>

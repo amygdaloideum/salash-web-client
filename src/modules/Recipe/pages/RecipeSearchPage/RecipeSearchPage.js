@@ -8,8 +8,6 @@ import { build } from '../../../../util/queryBuilder';
 // Import Components
 import RecipeSearchForm from '../../components/RecipeSearchForm/RecipeSearchForm';
 
-import styles from './RecipeSearchPage.css';
-
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryActions';
 
@@ -38,7 +36,7 @@ class RecipeSearchPage extends React.Component {
 
   render() {
     return (
-      <div className={styles.wrapper}>
+      <div>
         <h1>find recipes</h1>
         <RecipeSearchForm initialValues={this.initialValues} categories={this.props.categories} handleSearch={this.handleSearch}/>
       </div>

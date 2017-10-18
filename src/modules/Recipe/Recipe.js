@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-// Import Style
-import styles from './Recipe.css';
-
 class Recipe extends React.Component {
   render() {
     return undefined;

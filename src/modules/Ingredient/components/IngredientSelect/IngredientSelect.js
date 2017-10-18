@@ -1,8 +1,6 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
-import styles from './IngredientSelect.css';
-
 class ingredientsSelect extends React.Component {
   constructor(props) {
     super(props);
@@ -45,20 +43,20 @@ class ingredientsSelect extends React.Component {
 
   render() {
     return (
-      <div className={styles.container}>
-        <div className={styles.chips}>
+      <div>
+        <div>
           {
             this.props.input.value.map((chip, i) => (
-              <div className={styles.chip} key={i}>
+              <div key={i}>
                 <span>{chip}</span>
                 <i onClick={() => this.removeChip(i)} className="material-icons">clear</i>
               </div>
             ))
           }
         </div>
-        <div className={styles.input}>
+        <div>
           <input value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.updateValue} type="text" />
-          <button type="button" className={this.state.value ? styles['active-button'] : ''} onClick={this.addChip}><i className="material-icons">add</i></button>
+          <button type="button" onClick={this.addChip}><i className="material-icons">add</i></button>
         </div>
       </div>
     );

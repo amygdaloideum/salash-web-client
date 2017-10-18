@@ -2,13 +2,12 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 // Import Style
-import styles from './RecipeQuickSearch.css';
 
 let RecipeQuickSearch = props => (
-  <form onSubmit={props.handleSubmit(props.handleQuickSearch)} className={styles['search-form']}>
+  <form onSubmit={props.handleSubmit(props.handleQuickSearch)}>
     <div>
       show me
-        <Field name="category" component="select" className={styles['select-category']}>
+        <Field name="category" component="select">
         {props.categories.map((category, i) => {
           return <option key={i} value={category._id}>{`${category.name}s`}</option>;
         })}
@@ -16,14 +15,14 @@ let RecipeQuickSearch = props => (
     </div>
     <div>
       with
-        <Field name="ingredient1" component="input" type="text" className={styles['input-ingredient1']} />
+        <Field name="ingredient1" component="input" type="text" />
     </div>
     <div>
       and
-        <Field name="ingredient2" component="input" type="text" className={styles['input-ingredient2']} />
+        <Field name="ingredient2" component="input" type="text" />
     </div>
-    <div className={styles['button-container']}>
-      <div onClick={props.handleSubmit(props.handleQuickSearch)} className={styles['recipe-search-button']}>
+    <div>
+      <div onClick={props.handleSubmit(props.handleQuickSearch)}>
         go
       </div>
     </div>

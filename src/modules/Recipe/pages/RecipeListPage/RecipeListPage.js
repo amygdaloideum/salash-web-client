@@ -6,7 +6,6 @@ import RecipeList from '../../components/RecipeList';
 
 // Import Actions
 import { searchRecipes } from '../../RecipeActions';
-import { toggleAddRecipe } from '../../../App/AppActions';
 
 // Import Selectors
 import { getRecipes } from '../../RecipeReducer';

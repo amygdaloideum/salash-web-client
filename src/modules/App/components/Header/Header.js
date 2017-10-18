@@ -1,24 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-// Import Style
-import styles from './Header.css';
-
 const SmallTitle = props => (
-  <div className={styles['small-content']}>
+  <div>
     <h1><Link to="/" >Salash!</Link></h1>
   </div>
 );
 
 const BigTitle = props => (
-  <div className={styles['big-content']}>
-    <h1 className={styles['site-title']}> <Link to="/" >Salash!</Link></h1>
-    <span className={styles.subheader}>Raw food recipe hub</span>
+  <div>
+    <h1> <Link to="/" >Salash!</Link></h1>
+    <span>Raw food recipe hub</span>
   </div>
 );
 
 const LoggedIn = ({ user }) => (
-  <Link to={`/user/${user._id}`} className={styles['logged-in']}>
+  <Link to={`/user/${user._id}`} >
     <i className="fa fa-user-circle"></i>
     {user.username}
   </Link>
@@ -26,9 +23,9 @@ const LoggedIn = ({ user }) => (
 
 export function Header(props, context) {
   return (
-    <header className={styles.header}>
+    <header >
       <section>
-        <Link to="/" className={styles['nav-home']}>Salash!</Link>
+        <Link to="/" >Salash!</Link>
         <nav>
           <a>Detailed Search</a>
           <Link to="/create">Add Recipe</Link>
