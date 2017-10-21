@@ -1,4 +1,4 @@
-import callApi from '../../util/apiCaller';
+import callApi from '../../util/api';
 
 // Export Constants
 export const ADD_CATEGORIES = 'ADD_CATEGORIES';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addRecipeRequest } from '../../RecipeActions';
-import callApi from '../../../../util/apiCaller';
+import callApi from '../../../../util/api';
 
 import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm'; 
 

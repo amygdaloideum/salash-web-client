@@ -1,4 +1,4 @@
-import callApi from '../../util/apiCaller';
+import callApi from '../../util/api';
 import { browserHistory } from 'react-router';
 
 // Export Constants

@@ -3,12 +3,20 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './modules/App/App';
 
-// require.ensure polyfill for node
-if (typeof require.ensure !== 'function') {
-  require.ensure = function requireModule(deps, callback) {
-    callback(require);
-  };
-}
+// Pages
+import startPage from './modules/App/pages/StartPage/StartPage';
+import RecipeSearchPage from './modules/Recipe/pages/RecipeSearchPage/RecipeSearchPage';
+import RecipeListPage from './modules/Recipe/pages/RecipeListPage/RecipeListPage';
+import RecipeDetailPage from './modules/Recipe/pages/RecipeDetailPage/RecipeDetailPage';
+import RecipeCreationPage from './modules/Recipe/pages/RecipeCreationPage/RecipeCreationPage';
+import RecipeCreatedPage from './modules/Recipe/pages/RecipeCreatedPage/RecipeCreatedPage';
+import RecipeDeletedPage from './modules/Recipe/pages/RecipeDeletedPage/RecipeDeletedPage';
+import RecipeEditPage from './modules/Recipe/pages/RecipeEditPage/RecipeEditPage';
+import LoginPage from './modules/Auth/pages/LoginPage/LoginPage';
+import LoginLandingPage from './modules/Auth/pages/LoginLandingPage/LoginLandingPage';
+import SignupPage from './modules/Auth/pages/SignupPage/SignupPage';
+import UserPage from './modules/User/pages/UserPage';
+import NotFoundPage from './modules/Auth/pages/NotFoundPage/NotFoundPage';
 
 const requireAuth = (nextState, replace, user) => {
   if (!user.cuid) {
@@ -19,114 +27,25 @@ const requireAuth = (nextState, replace, user) => {
   }
 }
 
-// react-router setup with code-splitting
-// More info: http://blog.mxstbr.com/2016/01/react-apps-with-pages/
 export default user => (
   <Route path="/" component={App}>
-    <IndexRoute
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/App/pages/StartPage/StartPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/about"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/App/pages/AboutPage/AboutPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/find"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Recipe/pages/RecipeSearchPage/RecipeSearchPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/search"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Recipe/pages/RecipeListPage/RecipeListPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/recipes/:slug-:cuid"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Recipe/pages/RecipeDetailPage/RecipeDetailPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/create"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Recipe/pages/RecipeCreationPage/RecipeCreationPage').default);
-        });
-      }}
+    <IndexRoute component={startPage} />
+    <Route path="/find" component={RecipeSearchPage} />
+    <Route path="/search" component={RecipeListPage} />
+    <Route path="/recipes/:slug-:cuid" component={RecipeDetailPage} />
+    <Route path="/create" component={RecipeCreationPage}
       onEnter={(nextState, replace) => requireAuth(nextState, replace, user)}
     />
+    <Route path="/created" component={RecipeCreatedPage} />
+    <Route path="/recipes/deleted" component={RecipeDeletedPage} />
     <Route
-      path="/created"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Recipe/pages/RecipeCreatedPage/RecipeCreatedPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/recipes/deleted"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Recipe/pages/RecipeDeletedPage/RecipeDeletedPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/recipes/edit/:cuid"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Recipe/pages/RecipeEditPage/RecipeEditPage').default);
-        });
-      }}
+      path="/recipes/edit/:cuid" component={RecipeEditPage}
       onEnter={(nextState, replace) => requireAuth(nextState, replace, user)}
     />
-    <Route
-      path="/login"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Auth/pages/LoginPage/LoginPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/signup"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Auth/pages/SignupPage/SignupPage').default);
-        });
-      }}
-    />
-    <Route
-      path="/user/:id"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/User/pages/UserPage').default);
-        });
-      }}
-    />
-    <Route
-      path="*"
-      getComponent={(nextState, cb) => {
-        require.ensure([], require => {
-          cb(null, require('./modules/Auth/pages/NotFoundPage/NotFoundPage').default);
-        });
-      }}
-    />
+    <Route path="/login" component={LoginPage} />
+    <Route path="/facebook" component={LoginLandingPage} />
+    <Route path="/signup" component={SignupPage} />
+    <Route path="/user/:id" component={UserPage} />
+    <Route path="*" component={NotFoundPage} />
   </Route>
 );

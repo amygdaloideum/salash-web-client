@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import callApi from '../../../util/apiCaller';
+import callApi from '../../../util/api';
 import { browserHistory } from 'react-router';
 
 import UserRecipes from '../components/UserRecipes';
 
 // Import Actions
 import { fetchUser, addUser, removeUser } from '../UserActions';
-import { logOutUser } from '../../Auth/AuthActions';
+import { logOutUser } from '../../Auth/AuthThunks';
 import { fetchRecipe } from '../../Recipe/RecipeActions';
 
 // Import Selectors

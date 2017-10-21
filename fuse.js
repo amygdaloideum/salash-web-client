@@ -1,5 +1,6 @@
 const { FuseBox, BabelPlugin, WebIndexPlugin, Sparky, QuantumPlugin, SassPlugin, CSSPlugin } = require("fuse-box");
 const { cp, rm, mkdir } = require('shelljs');
+const { generate: generateConfig } = require('browser-env-vars');
 const path = require('path');
 const proxy = require('http-proxy-middleware');
 const express = require('express');
@@ -42,7 +43,7 @@ Sparky.task('build-prod', () => {
   fuse.run();
 });
 
-Sparky.task("default", () => {
+Sparky.task("default", ['config'],() => {
   rm('-rf', DEV_PATH);
   mkdir('-p', DEV_PATH);
   cp('-rf', 'src/assets/*', DEV_PATH);
@@ -83,6 +84,14 @@ Sparky.task("default", () => {
 Sparky.task("clean", () => {
   rm('-rf', BUILD_PATH);
   mkdir('-p', BUILD_PATH);
+});
+
+Sparky.task("config", () => {
+  generateConfig({
+    outFile: 'src/env.js',
+    whiteList: 'TEST',
+    esm: true,
+  });
 });
 
 Sparky.task('copy-assets', () => {

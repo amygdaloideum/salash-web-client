@@ -1,27 +1,34 @@
-import { AUTH_USER, AUTH_ERROR, UNAUTH_USER } from './AuthActions';
+import ActionCreator from '../../util/action-creator';
+
+export const ActionCreators = {
+  tokenRequested: new ActionCreator('TOKEN_REQUESTED'),
+  tokenRecieved: new ActionCreator('TOKEN_RECIEVED'),
+};
 
 const initialState = {
   error: '',
   message: '',
   authenticated: false,
   token: '',
+  fetching: false,
   user: {}
 };
 
 const AuthReducer = (state = initialState, action) => {
+  let partialState;
+
   switch (action.type) {
-    case AUTH_USER:
-      return { ...state, error: '', message: '', authenticated: true, token: action.token, user: action.user };
-
-    case AUTH_ERROR:
-      return { ...state, error: '', message: action.message, authenticated: false };
-
-    case UNAUTH_USER:
-      return initialState;
-
+    case ActionCreators.tokenRequested.type:
+      partialState = { fetching: true };
+      break;
+    case ActionCreators.tokenRecieved.type:
+      partialState = { fetching: false, token: action.payload };
+      break;
     default:
       return state;
   }
+
+  return { ...state, ...partialState };
 }
 
 export const getMessage = state => state.auth.message;

@@ -1,20 +1,23 @@
-// Import Actions
-import { ADD_USER, REMOVE_USER } from './UserActions';
+import ActionCreator from '../../util/action-creator';
 
-// Initial State
+export const ActionCreators = {
+  userRecieved: new ActionCreator('USER_RECIEVED'),
+};
+
 const initialState = {};
 
 const UserReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_USER:
-      return action.user;
+  let partialState;
 
-    case REMOVE_USER:
-      return initialState;
-      
+  switch (action.type) {
+    case ActionCreators.userRecieved.type:
+      partialState = action.payload;
+      break;
     default:
       return state;
   }
+
+  return { ...state, ...partialState };
 };
 
 export const getUser = state => state.user;

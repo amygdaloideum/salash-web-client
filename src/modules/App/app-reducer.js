@@ -1,4 +1,4 @@
-import ActionCreator from "../../util/action-creator";
+import ActionCreator from '../../util/action-creator';
 
 const initialState = {
   isBurgerMenuExpanded: false,
@@ -11,9 +11,9 @@ export const ActionCreators = {
 const AppReducer = (state = initialState, action) => {
 
   switch (action.type) {
-      case ActionCreators.setBurgerVisibility.type:
-        const partialState =  { isBurgerMenuExpanded: action.payload };
-        return { ...state, ...partialState};
+    case ActionCreators.setBurgerVisibility.type:
+      const partialState = { isBurgerMenuExpanded: action.payload };
+      return { ...state, ...partialState };
     default:
       return state;
   }
