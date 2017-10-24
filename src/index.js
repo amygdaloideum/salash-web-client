@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './App';
-import { configureStore } from './store';
+import { configureStore, buildInitialState } from './store';
 
 // Initialize store
-const store = configureStore(window.__INITIAL_STATE__);
+const store = configureStore(buildInitialState());
 
 render(<App store={store} />, document.getElementById('root'));

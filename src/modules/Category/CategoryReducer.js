@@ -1,16 +1,16 @@
-// Import Actions
-import { ADD_CATEGORIES } from './CategoryActions';
+import ActionCreator from '../../util/action-creator';
+
+export const ActionCreators = {
+  categoriesRecieved: new ActionCreator('CATEGORIES_RECIEVED'),
+};
 
 // Initial State
-const initialState = { data: [] };
+const initialState = [];
 
 const CategoryReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_CATEGORIES :
-      return {
-        data: action.categories
-      };
-
+    case ActionCreators.categoriesRecieved.type:
+      return action.payload;
     default:
       return state;
   }

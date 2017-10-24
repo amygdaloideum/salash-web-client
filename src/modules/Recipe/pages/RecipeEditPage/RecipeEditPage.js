@@ -5,7 +5,7 @@ import callApi from '../../../../util/api';
 import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm';
 
 // Import Actions
-import { fetchCategories } from '../../../Category/CategoryActions';
+import { fetchCategories } from '../../../Category/CategoryThunks';
 import { fetchRecipe, updateRecipeRequest } from '../../RecipeActions';
 
 // Import Selectors

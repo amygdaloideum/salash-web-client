@@ -9,24 +9,18 @@ import RecipeQuickSearch from '../../../Recipe/components/RecipeQuickSearch/Reci
 import Menu from '../../components/Menu/Menu';
 
 // Import Actions
-import { fetchCategories } from '../../../Category/CategoryActions';
-import { ActionCreators } from '../../app-reducer';
+import { fetchCategories } from '../../../Category/CategoryThunks';
 
 // Import Selectors
 import { getCategories } from '../../../Category/CategoryReducer';
-import { getBurgerVisibility } from '../../app-reducer';
 
 import Navbar from '../../components/Navbar/Navbar';
 
 const mapStateToProps = state => ({
-  categories: getCategories(state),
-  user: state.auth.user,
-  isBurgerVisible: getBurgerVisibility(state),
+  categories: state.categories,
 });
 
-const dispatchToProps = {
-  setBurgerVisibility: ActionCreators.setBurgerVisibility.create,
-};
+const dispatchToProps = {};
 
 class StartPage extends React.Component {
   componentDidMount() {
@@ -39,20 +33,15 @@ class StartPage extends React.Component {
     browserHistory.push(`/search?categories=${fields.category}&ingredients=${ingredient1},${ingredient2}`);
   };
 
-  toggleBurgerVisibility = () => {
-    const test = ActionCreators;
-    this.props.setBurgerVisibility(!this.props.isBurgerVisible);
-  }
-
   render() {
     return (
       <div className="">
         {/*<div className={styles.menu}>
           <Menu user={this.props.user} />
         </div>'*/}
-        <section className="hero is-fullheight">
+        <section className="hero is-fullheight is-primary is-bold">
           <div className="hero-head">
-            <Navbar onBurgerClick={this.toggleBurgerVisibility} showBurger={this.props.isBurgerVisible} />
+            <Navbar />
           </div>
           <div className="hero-body">
             <div className="container tc">

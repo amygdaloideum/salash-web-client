@@ -19,7 +19,7 @@ import UserPage from './modules/User/pages/UserPage';
 import NotFoundPage from './modules/Auth/pages/NotFoundPage/NotFoundPage';
 
 const requireAuth = (nextState, replace, user) => {
-  if (!user.cuid) {
+  if (!user.id) {
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }

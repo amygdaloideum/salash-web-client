@@ -22,7 +22,11 @@ const AuthReducer = (state = initialState, action) => {
       partialState = { fetching: true };
       break;
     case ActionCreators.tokenRecieved.type:
-      partialState = { fetching: false, token: action.payload };
+      partialState = { 
+        fetching: false,
+        token: action.payload.token,
+        user: action.payload.user,
+      };
       break;
     default:
       return state;

@@ -9,7 +9,7 @@ import { build } from '../../../../util/queryBuilder';
 import RecipeSearchForm from '../../components/RecipeSearchForm/RecipeSearchForm';
 
 // Import Actions
-import { fetchCategories } from '../../../Category/CategoryActions';
+import { fetchCategories } from '../../../Category/CategoryThunks';
 
 // Import Selectors
 import { getCategories } from '../../../Category/CategoryReducer';

@@ -1,9 +1,29 @@
-/**
- * Main store function
- */
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+import { combineReducers } from 'redux';
+
+// Import Reducers
+import app from './modules/App/app-reducer';
+import recipes from './modules/Recipe/RecipeReducer';
+import categories from './modules/Category/CategoryReducer';
+import auth from './modules/Auth/AuthReducer';
+import user from './modules/User/UserReducer';
+import { routerReducer as routing } from 'react-router-redux';
+import { reducer as form } from 'redux-form'
+
+const rootReducer = combineReducers({
+  routing,
+  form,
+  app,
+  recipes,
+  categories,
+  auth,
+  user
+});
+
+export const buildInitialState = () => localStorage.getItem("auth") ? {
+  auth: JSON.parse(localStorage.getItem("auth")),
+} : {};
 
 export function configureStore(initialState = {}) {
 

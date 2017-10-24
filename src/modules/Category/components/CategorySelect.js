@@ -5,37 +5,45 @@ class CategorySelect extends React.Component {
     super(props);
   }
 
-  handleChange(e, option) {
+  handleChange = (e, option) => {
     const input = this.props.input;
     const index = input.value.findIndex(v => v === option);
 
-    if (e.target.checked && index < 0) {
-      input.onChange(input.value.concat([e.target.value]));
-    } else {
-      const copy = [...input.value];
-      copy.splice(index, 1);
-      input.onChange(copy);
-    }
+    input.onChange(input.value.concat([e.target.value]));
   }
 
-  isChecked(option){
+  unselectIngredient = (category, input) => {
+    input.onChange(input.value.filter(v => v !== category));
+  }
+
+  isChecked(option) {
     return ~this.props.input.value.findIndex(v => v === option);
   }
 
   render() {
-    const { fields } = this.props;
+    const { fields, options, label, input } = this.props;
     return (
-      <div>
-        {this.props.options.map((option, i) => (
-          <div key={i}>
-            <input
-              type="checkbox"
-              value={option}
-              checked={this.isChecked(option)}
-              onChange={e => this.handleChange(e, option)} />
-            <span>{option}</span>
+      <div className="field">
+        <label className="label">{label}</label>
+        <div className="tags">
+          {input.value.map((category, index) => (
+          <span key={index} className="tag is-info is-medium">
+            {category}
+            <button onClick={ e => this.unselectIngredient(category, input)} className="delete is-small"></button>
+          </span>))
+          }
+        </div>
+        <div className="control">
+          <div className="select">
+            <select placeholder="select" value={''} onChange={this.handleChange}>
+              <option></option>
+              {
+                options.map((option, index) => <option key={index}>{option}</option>)
+              }
+            </select>
           </div>
-        ))}
+          <button onClick={this.handleChange} className="button is-primary">add</button>
+        </div>
       </div>
     );
   }
