@@ -16,10 +16,6 @@ class CategorySelect extends React.Component {
     input.onChange(input.value.filter(v => v !== category));
   }
 
-  isChecked(option) {
-    return ~this.props.input.value.findIndex(v => v === option);
-  }
-
   render() {
     const { fields, options, label, input } = this.props;
     return (

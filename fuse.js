@@ -1,4 +1,4 @@
-const { FuseBox, BabelPlugin, WebIndexPlugin, Sparky, QuantumPlugin, SassPlugin, CSSPlugin } = require("fuse-box");
+const { FuseBox, BabelPlugin, WebIndexPlugin, Sparky, QuantumPlugin, SassPlugin, CSSPlugin, CSSResourcePlugin } = require("fuse-box");
 const { cp, rm, mkdir } = require('shelljs');
 const { generate: generateConfig } = require('browser-env-vars');
 const path = require('path');
@@ -24,6 +24,7 @@ const plugins = isprod => [
     },
   }),
   [SassPlugin({importer : true}), CSSPlugin()],
+  [CSSResourcePlugin(), CSSPlugin()],
   isprod && QuantumPlugin({uglify : true}),
 ];
 

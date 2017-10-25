@@ -7,6 +7,7 @@ import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm
 
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryThunks';
+import { fetchIngredients, fetchReport } from '../../../Ingredient/IngredientTunks';
 
 
 const mapStateToProps = state => ({
@@ -15,6 +16,8 @@ const mapStateToProps = state => ({
 
 const dispatchToProps = {
   fetchCategories,
+  fetchIngredients,
+  fetchReport,
 };
 
 
@@ -27,11 +30,16 @@ export class RecipeCreationPage extends React.Component {
     this.props.dispatch(addRecipeRequest(fields));
   };
 
+  getIngredients = name => this.props.fetchIngredients(name)
+    .then(({ payload }) => payload.map(ingredient => ({value: ingredient.id, label: ingredient.name})))
+    .then(ingredients => ({options: ingredients }));
+
+  getReport = id => this.props.fetchReport(id)
+    .then(({ payload }) => payload);
+
   initialValues = {
     categories: [],
-    ingredients: [
-      { amount: '', name: '' }
-    ]
+    ingredients: [],
   };
 
   render() {
@@ -39,7 +47,7 @@ export class RecipeCreationPage extends React.Component {
       <div className="section">
         <div className="container">
           <h1 className="title">add recipe</h1>
-          <RecipeCreateForm initialValues={this.initialValues} handleCreate={this.handleCreate} categories={this.props.categories} />
+          <RecipeCreateForm initialValues={this.initialValues} getReport={this.getReport} getIngredients={this.getIngredients} handleCreate={this.handleCreate} categories={this.props.categories} />
         </div>
       </div>
     );

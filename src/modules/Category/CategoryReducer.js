@@ -4,7 +4,6 @@ export const ActionCreators = {
   categoriesRecieved: new ActionCreator('CATEGORIES_RECIEVED'),
 };
 
-// Initial State
 const initialState = [];
 
 const CategoryReducer = (state = initialState, action) => {

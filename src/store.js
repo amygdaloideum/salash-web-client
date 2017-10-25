@@ -6,6 +6,7 @@ import { combineReducers } from 'redux';
 import app from './modules/App/app-reducer';
 import recipes from './modules/Recipe/RecipeReducer';
 import categories from './modules/Category/CategoryReducer';
+import ingredients from './modules/Ingredient/IngredientReducer';
 import auth from './modules/Auth/AuthReducer';
 import user from './modules/User/UserReducer';
 import { routerReducer as routing } from 'react-router-redux';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   app,
   recipes,
   categories,
+  ingredients,
   auth,
   user
 });

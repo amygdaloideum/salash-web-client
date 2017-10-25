@@ -11,6 +11,7 @@ import routes from './routes';
 
 // Base stylesheet
 import './styles/main.sass';
+import 'react-select/dist/react-select.css';
 
 export default function App(props) {
   return (

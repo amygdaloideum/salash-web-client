@@ -8,5 +8,6 @@ public/*
 coverage/
 .nyc_output/
 .fusebox/
-dev/.env
+dev/
+.env
 src/env.js
