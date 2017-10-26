@@ -24,7 +24,7 @@ export const renderTextarea = ({ input, label, placeholder, type, meta: { touche
 );
 
 export const SubmitButton = ({ text, disabled: { invalid, submitting, pristine } }) => (
-  <button disabled={invalid || submitting || pristine} type="submit">{text}</button>
+  <button className="button" disabled={invalid || submitting || pristine} type="submit">{text}</button>
 );
 
 export const SubmitButtonNoValidation = ({ text, submit }) => (

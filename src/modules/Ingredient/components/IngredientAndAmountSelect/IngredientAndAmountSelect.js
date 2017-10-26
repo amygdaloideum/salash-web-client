@@ -1,6 +1,10 @@
 import React from 'react';
 import Select from 'react-select';
 
+import cuid from 'cuid';
+
+import IngredientList from '../ingredient-list';
+
 const presetMeasures = [
   { value: 'g', label: 'grams' },
   { value: 'cup', label: 'cups' },
@@ -16,9 +20,8 @@ export default class IngredientSelect extends React.Component {
       },
       custom: true,
       unit: 'g',
-      amount: 0,
+      amount: 1,
       customAmount: '',
-      report: {},
     };
     this.state = this.initialState;
   }
@@ -33,25 +36,26 @@ export default class IngredientSelect extends React.Component {
       amount: this.state.amount,
       unit: this.state.unit,
       custom: this.state.custom,
+      customAmount: this.state.customAmount,
     };
+    if (value.custom) {
+      value.ingredient.value = cuid();
+    }
     this.props.input.onChange([...this.props.input.value, value]);
     this.setState(this.initialState);
   }
 
   valueSelected = option => {
-    if (option.value) {
-      this.props.getReport(option.value).then(report => {
-        this.setState({ report });
-        console.log(report);
-      });
-    }
     this.setState({ selectedIngredient: option, custom: false });
   }
 
   handleUnitChange = unit => this.setState({ unit });
   handleAmountChange = event => this.setState({ amount: event.target.value });
+  handleCustomAmountChange = event => this.setState({ customAmount: event.target.value });
 
-  isEntryValid = () => this.state.unit && this.state.amount && this.state.selectedIngredient;
+  isEntryValid = () => 
+    (!this.state.custom && this.state.unit && this.state.amount && this.state.selectedIngredient)
+    || (this.state.custom && this.state.customAmount);
 
   onType = val => {
     this.setState({
@@ -68,17 +72,8 @@ export default class IngredientSelect extends React.Component {
     const { fields, options, label, input } = this.props;
     return (
       <div className="field">
-        <label className="label">{label}</label>
-        <div className="tags">
-          {input.value.map((entry, index) => (
-            <div key={index} class="tags has-addons">
-              <span class="tag is-dark">{entry.ingredient.label}</span>
-              <span class="tag is-info">{entry.amount}{entry.unit}</span>
-              <a class="tag is-delete"></a>
-              <button onClick={e => this.unselectIngredient(entry, input)} className="delete is-small"></button>
-            </div>))
-          }
-        </div>
+        <IngredientList formInput={input} custom={false} removeIngredient={this.unselectIngredient} />
+        <IngredientList formInput={input} custom={true} removeIngredient={this.unselectIngredient} />
         <div className="flex">
           <Select.Async
             name="Ingredient"
@@ -102,7 +97,7 @@ export default class IngredientSelect extends React.Component {
           }
           {this.state.custom && this.state.selectedIngredient.label &&
             <div>
-              <input className="input grow" placeholder="2 cloves" />
+              <input value={this.state.customAmount} onChange={this.handleCustomAmountChange} className="input grow" placeholder="2 cloves" />
             </div>
           }
           <button disabled={!this.isEntryValid()} onClick={this.addIngredient} className="button is-primary">add</button>

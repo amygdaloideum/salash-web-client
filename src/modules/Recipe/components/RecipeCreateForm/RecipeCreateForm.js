@@ -21,7 +21,7 @@ const validate = values => {
 
 let RecipeCreateForm = ({ editMode,handleSubmit, handleCreate, categories, invalid, submitting, pristine, getIngredients, getReport }) => (
   <form onSubmit={handleSubmit(handleCreate)}>
-
+    <h1 className="title">General</h1>
     <Field name="title" icon="fa-pencil-square-o" component={renderInput} type="text" label="Title" />
 
     <Field name="description" component={renderTextarea} placeholder="write a short description of the recipe" label="Description" />
@@ -29,7 +29,7 @@ let RecipeCreateForm = ({ editMode,handleSubmit, handleCreate, categories, inval
     <div>
       <Field name='categories' label="Categories" options={categories.map(c => c.name)} component={CategorySelect} />
     </div>
-
+    <h1 className="title">Ingredients</h1>
     <Field name="ingredients" getReport={getReport} getIngredients={getIngredients} label="ingredients" component={IngredientAndAmountSelect} />
     { /*
     <div>
@@ -37,7 +37,7 @@ let RecipeCreateForm = ({ editMode,handleSubmit, handleCreate, categories, inval
       <Field name="instructions" type="text" component={RecipeEditor} />
     </div>
     */ }
-    <SubmitButton text={editMode ? 'save changes' : 'add recipe'} disabled={{ invalid, submitting, pristine }} />
+    <SubmitButton className="button" text={editMode ? 'save changes' : 'add recipe'} disabled={{ invalid, submitting, pristine }} />
   </form>
 );
 
