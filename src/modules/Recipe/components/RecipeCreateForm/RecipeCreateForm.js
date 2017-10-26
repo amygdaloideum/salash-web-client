@@ -31,12 +31,12 @@ let RecipeCreateForm = ({ editMode,handleSubmit, handleCreate, categories, inval
     </div>
     <h1 className="title">Ingredients</h1>
     <Field name="ingredients" getReport={getReport} getIngredients={getIngredients} label="ingredients" component={IngredientAndAmountSelect} />
-    { /*
+    {
     <div>
       <label>Instructions</label>
       <Field name="instructions" type="text" component={RecipeEditor} />
     </div>
-    */ }
+    }
     <SubmitButton className="button" text={editMode ? 'save changes' : 'add recipe'} disabled={{ invalid, submitting, pristine }} />
   </form>
 );

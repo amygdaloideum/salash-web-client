@@ -1,26 +1,22 @@
 import React from 'react';
 let RichTextEditor, RichTextEditorDefault;
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 export default class RecipeEditor extends React.Component {
 
-  constructor () {
+  constructor() {
     super()
     this.state = {
-      shouldRender: false,
-      value: {}
-    }
+      editorState: EditorState.createEmpty(),
+    };
   }
 
-  /*state = {
-    value: RichTextEditor.createEmptyValue(),
-    shouldRender: false
-  }*/
+  onEditorStateChange = (editorState) => this.setState({ editorState });
 
-  componentDidMount () {
-    RichTextEditor = require('react-rte');
-    RichTextEditorDefault = RichTextEditor.default;
-    this.state.value = this.props.input.value ? RichTextEditor.createValueFromString(this.props.input.value, 'html') : RichTextEditor.createEmptyValue();    
-    this.setState({shouldRender: true})
+  componentDidMount() {
+    this.setState({ shouldRender: true })
   }
 
   onChange = (value) => {
@@ -37,34 +33,16 @@ export default class RecipeEditor extends React.Component {
 
   render() {
     const toolbarConfig = {
-      // Optionally specify the groups to display (displayed in the order listed).
-      display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
-      INLINE_STYLE_BUTTONS: [
-        { label: 'Bold', style: 'BOLD', className: 'custom-css-class' },
-        { label: 'Italic', style: 'ITALIC' },
-        { label: 'Underline', style: 'UNDERLINE' }
-      ],
-      BLOCK_TYPE_DROPDOWN: [
-        { label: 'Normal', style: 'unstyled' },
-        { label: 'Heading Large', style: 'header-one' },
-        { label: 'Heading Medium', style: 'header-two' },
-        { label: 'Heading Small', style: 'header-three' }
-      ],
-      BLOCK_TYPE_BUTTONS: [
-        { label: 'UL', style: 'unordered-list-item' },
-        { label: 'OL', style: 'ordered-list-item' }
-      ]
+      options: ['inline', 'blockType', 'list', 'link', 'emoji', 'history'],
+      inline: { options: ['bold', 'italic', 'underline', 'strikethrough'] },
+      list: { options: ['unordered'] },
     };
-    if (this.state.shouldRender) {
-      return (
-        <RichTextEditorDefault
-          value={this.state.value}
-          onChange={this.onChange}
-          toolbarConfig={toolbarConfig}
-          />
-      );
-    } else {
-      return null;
-    }
+    return (
+      <Editor
+        editorState={this.state.editorState}
+        onEditorStateChange={this.onEditorStateChange}
+        toolbar={toolbarConfig}
+      />
+    );
   }
 }
