@@ -9,6 +9,8 @@ import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm
 import { fetchCategories } from '../../../Category/CategoryThunks';
 import { fetchIngredients, fetchReport } from '../../../Ingredient/IngredientTunks';
 
+import { EditorState } from 'draft-js';
+
 
 const mapStateToProps = state => ({
   categories: state.categories,
@@ -40,6 +42,7 @@ export class RecipeCreationPage extends React.Component {
   initialValues = {
     categories: [],
     ingredients: [],
+    instructions: EditorState.createEmpty()
   };
 
   render() {
