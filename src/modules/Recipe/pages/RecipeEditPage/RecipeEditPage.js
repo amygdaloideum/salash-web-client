@@ -6,11 +6,11 @@ import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm
 
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryThunks';
-import { fetchRecipe, updateRecipeRequest } from '../../RecipeActions';
+import { fetchRecipe, updateRecipeRequest } from '../../recipe-thunks';
 
 // Import Selectors
 import { getCategories } from '../../../Category/CategoryReducer';
-import { getRecipe } from '../../RecipeReducer';
+import { getRecipe } from '../../recipe-reducer';
 
 export class RecipeEditPage extends React.Component {
   componentDidMount() {

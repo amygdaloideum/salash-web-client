@@ -34,7 +34,6 @@ export default user => (
     <Route path="/search" component={RecipeListPage} />
     <Route path="/recipes/:slug-:cuid" component={RecipeDetailPage} />
     <Route path="/create" component={RecipeCreationPage}
-      onEnter={(nextState, replace) => requireAuth(nextState, replace, user)}
     />
     <Route path="/created" component={RecipeCreatedPage} />
     <Route path="/recipes/deleted" component={RecipeDeletedPage} />

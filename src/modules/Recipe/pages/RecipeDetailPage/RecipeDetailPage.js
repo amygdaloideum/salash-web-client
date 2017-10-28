@@ -13,10 +13,10 @@ import {
   favoriteRecipeRequest,
   unfavoriteRecipeRequest,
   deleteRecipeRequest
-} from '../../RecipeActions';
+} from '../../recipe-thunks';
 
 // Import Selectors
-import { getRecipe } from '../../RecipeReducer';
+import { getRecipe } from '../../recipe-reducer';
 
 class RecipeDetailsPage extends React.Component {
 

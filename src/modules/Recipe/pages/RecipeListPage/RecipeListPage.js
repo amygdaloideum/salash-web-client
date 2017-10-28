@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import RecipeList from '../../components/RecipeList';
 
 // Import Actions
-import { searchRecipes } from '../../RecipeActions';
+import { searchRecipes } from '../../recipe-thunks';
 
 // Import Selectors
-import { getRecipes } from '../../RecipeReducer';
+import { getRecipes } from '../../recipe-reducer';
 
 import { jsToStringQuery, queryToAffirmation } from '../../../../util/queryBuilder';
 

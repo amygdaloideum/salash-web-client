@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addRecipeRequest } from '../../RecipeActions';
 import callApi from '../../../../util/api';
 
 import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm';
@@ -8,6 +7,7 @@ import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryThunks';
 import { fetchIngredients, fetchReport } from '../../../Ingredient/IngredientTunks';
+import { createRecipe } from '../../recipe-thunks';
 
 import { EditorState } from 'draft-js';
 
@@ -20,6 +20,7 @@ const dispatchToProps = {
   fetchCategories,
   fetchIngredients,
   fetchReport,
+  createRecipe,
 };
 
 
@@ -29,7 +30,7 @@ export class RecipeCreationPage extends React.Component {
   }
 
   handleCreate = (fields) => {
-    this.props.dispatch(addRecipeRequest(fields));
+    this.props.createRecipe(fields);
   };
 
   getIngredients = name => this.props.fetchIngredients(name)
@@ -42,14 +43,14 @@ export class RecipeCreationPage extends React.Component {
   initialValues = {
     categories: [],
     ingredients: [],
-    instructions: EditorState.createEmpty()
+    instructions: EditorState.createEmpty(),
   };
 
   render() {
     return (
       <div className="section">
         <div className="container">
-          <h1 className="title">add recipe</h1>
+          <h1 className="title is-1">New Recipe</h1>
           <RecipeCreateForm initialValues={this.initialValues} getReport={this.getReport} getIngredients={this.getIngredients} handleCreate={this.handleCreate} categories={this.props.categories} />
         </div>
       </div>

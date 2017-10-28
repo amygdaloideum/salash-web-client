@@ -8,7 +8,7 @@ import UserRecipes from '../components/UserRecipes';
 // Import Actions
 import { fetchUser, addUser, removeUser } from '../UserActions';
 import { logOutUser } from '../../Auth/AuthThunks';
-import { fetchRecipe } from '../../Recipe/RecipeActions';
+import { fetchRecipe } from '../../Recipe/recipe-thunks';
 
 // Import Selectors
 import { getUser } from '../UserReducer';

@@ -2,10 +2,14 @@ import fetch from 'isomorphic-fetch';
 
 export const API_URL = `/api`;
 
-const buildHeaders = () => ({
-  'content-type': 'application/json',
-  'authorization': localStorage.getItem("token"),
-});
+const buildHeaders = (multipart) => {
+  const auth = JSON.parse(localStorage.getItem("auth"));
+  const headers =  { 'authorization': auth ? auth.token : '' }
+  if(!multipart) {
+    headers['content-type'] = 'application/json';
+  }
+  return headers;
+};
 
 export function get(endpoint) {
   return fetch(`${API_URL}/${endpoint}`, {
@@ -14,6 +18,27 @@ export function get(endpoint) {
   }).then(response => response.json());
 }
 
+export function post(endpoint, body = {}, options = {}) {
+  return fetch(`${API_URL}/${endpoint}`, {
+    headers: buildHeaders(options.multipart),
+    method: 'POST',
+    body: options.multipart ? convertBodyToFormData(body) : JSON.stringify(body),
+  }).then(response => response.json());
+}
+
+// Helpers
+
+export function convertBodyToFormData(body) {
+  console.log('converting post body to formdata...');
+  const formData  = new FormData();
+
+  for(var name in body) {
+    formData.append(name, body[name]);
+  }
+
+  return formData;
+}
+
 export default {
-  get,
+  get, post,
 };

@@ -9,7 +9,7 @@ export default class RecipeEditor extends React.Component {
   constructor() {
     super()
     this.state = {
-      editorState: EditorState.createEmpty(),
+      editorState: EditorState.createEmpty()
     };
   }
 
@@ -30,10 +30,9 @@ export default class RecipeEditor extends React.Component {
       inline: { options: ['bold', 'italic', 'underline', 'strikethrough'] },
       list: { options: ['unordered'] },
     };
-    const state = convertFromRaw(this.props.input.value);
     return (
       <Editor
-        editorState={state}
+        editorState={this.state.editorState}
         onEditorStateChange={this.onEditorStateChange}
         toolbar={toolbarConfig}
       />

@@ -1,21 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import LoginForm from '../../components/loginform/loginform';
-import { FacebookButton, GoogleButton, TwitterButton } from '../../components/SocialSignInButtons/SocialSignInButtons';
-
 import { getMessage } from '../../AuthReducer';
 import env from '../../../../env';
 
 class LoginPage extends React.Component {
-
-  handleLogin = ({email, password}) => {
-    this.props.dispatch(loginUserRequest({ email, password }));
-  };
-
-  handleFacebookLogin = () => {
-    this.props.dispatch(facebookLoginRequest()).then( () => location.reload());
-  };
 
   render() {
     return (

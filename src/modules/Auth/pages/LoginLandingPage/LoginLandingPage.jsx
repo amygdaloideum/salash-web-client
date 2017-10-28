@@ -11,10 +11,10 @@ const dispatchToProps = {
   requestToken: requestToken,
 };
 
-
 class LoginLandingPage extends React.Component {
 
   componentDidMount = () => {
+      console.log(window.location.href);
     this.props.requestToken(this.props.location.query.code).then(data => {
       browserHistory.push('/');
     });
