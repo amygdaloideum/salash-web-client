@@ -28,7 +28,7 @@ let RecipeCreateForm = ({ editMode, handleSubmit, handleCreate, categories, inva
     <Field name="description" component={renderTextarea} placeholder="write a short description of the recipe" label="Description" />
 
     <div>
-      <Field name='categories' label="Categories" options={categories.map(c => c.name)} component={CategorySelect} />
+      <Field name='categories' label="Categories" options={categories} component={CategorySelect} />
     </div>
     <h1 className="title is-4">Ingredients</h1>
     <Field name="ingredients" getReport={getReport} getIngredients={getIngredients} label="ingredients" component={IngredientAndAmountSelect} />
