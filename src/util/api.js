@@ -19,11 +19,13 @@ export function get(endpoint) {
 }
 
 export function post(endpoint, body = {}, options = {}) {
-  return fetch(`${API_URL}/${endpoint}`, {
+  const config = {
     headers: buildHeaders(options.multipart),
     method: 'POST',
     body: options.multipart ? convertBodyToFormData(body) : JSON.stringify(body),
-  }).then(response => response.json());
+  };
+  console.log(config);
+  return fetch(`${API_URL}/${endpoint}`, config).then(response => response.json());
 }
 
 // Helpers

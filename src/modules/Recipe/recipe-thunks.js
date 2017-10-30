@@ -1,6 +1,7 @@
 import api from '../../util/api';
 import { browserHistory } from 'react-router';
 import draftToHtml from 'draftjs-to-html';
+import { ActionCreators } from './recipe-reducer';
 
 export function createRecipe(recipeFormData) {
   const formData = { ...recipeFormData };
@@ -13,9 +14,20 @@ export function createRecipe(recipeFormData) {
     .then(res => {
       console.log(res);
     });
-    /*return api.post('recipes', formData, { multipart: true }).then(res => {
-      console.log(res);
-    });*/
+  };
+}
+
+export function getRecipe(id) {
+  return dispatch => api.get(`recipes/${id}`)
+    .then(recipe => dispatch(ActionCreators.recipeRecieved.create(recipe)));
+}
+
+export function getLatestRecipes() {
+  return dispatch => {
+    return api.get('recipes/latest')
+    .then(recipes => {
+      return dispatch(ActionCreators.recipesRecieved.create(recipes));
+    });
   };
 }
 

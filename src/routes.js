@@ -32,7 +32,7 @@ export default user => (
     <IndexRoute component={startPage} />
     <Route path="/find" component={RecipeSearchPage} />
     <Route path="/search" component={RecipeListPage} />
-    <Route path="/recipes/:slug-:cuid" component={RecipeDetailPage} />
+    <Route path="/recipes/:id" component={RecipeDetailPage} />
     <Route path="/create" component={RecipeCreationPage}
     />
     <Route path="/created" component={RecipeCreatedPage} />

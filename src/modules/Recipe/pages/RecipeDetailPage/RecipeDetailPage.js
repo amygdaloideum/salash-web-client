@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
@@ -6,49 +6,48 @@ import { browserHistory } from 'react-router';
 import { LoveButton, FavButton, DeleteButton, EditButton } from '../../../../components/InteractionButtons/InteractionButtons'
 
 // Import Actions
-import {
-  fetchRecipe,
-  loveRecipeRequest,
-  unloveRecipeRequest,
-  favoriteRecipeRequest,
-  unfavoriteRecipeRequest,
-  deleteRecipeRequest
-} from '../../recipe-thunks';
+import { getRecipe } from '../../recipe-thunks';
 
-// Import Selectors
-import { getRecipe } from '../../recipe-reducer';
+const mapStateToProps = state => ({
+  recipe: state.recipes.recipe,
+  user: state.auth.user,
+});
+
+const dispatchToProps = {
+  getRecipe,
+};
 
 class RecipeDetailsPage extends React.Component {
 
+  constructor(props) { super(props); }
+
   createMarkup = markup => ({ __html: markup });
 
-  love = () => {
-    this.props.dispatch(loveRecipeRequest(this.props.recipe));
+  componentDidMount() {
+    const pathId = this.props.params.id;
+    this.props.getRecipe(pathId);
   }
 
-  unlove = () => {
-    this.props.dispatch(unloveRecipeRequest(this.props.recipe));
-  }
+  love = () => { }
 
-  favorite = () => {
-    this.props.dispatch(favoriteRecipeRequest(this.props.recipe));
-  }
+  unlove = () => { }
 
-  unfavorite = () => {
-    this.props.dispatch(unfavoriteRecipeRequest(this.props.recipe));
-  }
+  favorite = () => { }
 
-  delete = () => {
-    browserHistory.push('/recipes/deleted');
-    this.props.dispatch(deleteRecipeRequest(this.props.recipe));
-  }
+  unfavorite = () => { }
+
+  delete = () => { }
 
   edit = () => {
-    browserHistory.push(`/recipes/edit/${this.props.recipe.cuid}`);
+    browserHistory.push(`/recipes/edit/${this.props.recipe.id}`);
   }
 
   render() {
-    const isAuthor = (this.props.recipe) ? this.props.recipe.author.cuid === this.props.user.cuid : undefined;
+    const { recipe } = this.props;
+    if (!recipe.id) {
+      return <div>nada</div>
+    }
+    const isUploader = (this.props.recipe) ? this.props.recipe.uploader.id === this.props.user.id : undefined;
     return (
       <div>
         {
@@ -57,64 +56,47 @@ class RecipeDetailsPage extends React.Component {
           </div> : null
         }
         {
-        this.props.recipe ?
-        <div>
-          {
-            this.props.recipe.imageUrl ? <div><img src={this.props.recipe.imageUrl} /></div> : null
-          }
-          <h1>{this.props.recipe.title}</h1>
-          <div>
-            {this.props.recipe.categories.map((cat, i) => (
-              <span key={i}>{cat.name}</span>
-            ))}
-          </div>
-
-          <p>{this.props.recipe.description}</p>
-
-          <div>
-            <h3>Ingredients</h3>
-            <table>
-              <tbody>
-                {this.props.recipe.ingredients.map((ing, i) => (
-                  <tr key={i}>
-                    <td>{ing.name}</td>
-                    <td>{ing.amount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <h3>Instructions</h3>
-          <div dangerouslySetInnerHTML={this.createMarkup(this.props.recipe.instructions)} />
-          <div>
-            <LoveButton loveAction={this.love} unloveAction={this.unlove} interactions={this.props.recipe.interactions} />
-            <FavButton favoriteAction={this.favorite} unfavoriteAction={this.unfavorite} interactions={this.props.recipe.interactions} />
-          </div>
-          {isAuthor ? (
+          this.props.recipe ?
             <div>
-              <DeleteButton deleteAction={this.delete} />
-              <EditButton editAction={this.edit} />
-            </div>
-          ) : null
-          }
-        </div> : null
+              {
+                this.props.recipe.image ? <div><img src={this.props.recipe.image.url} /></div> : null
+              }
+              <h1>{this.props.recipe.title}</h1>
+              <div>
+                {this.props.recipe.categories.map((cat, i) => (
+                  <span key={i}>{cat.name}</span>
+                ))}
+              </div>
+
+              <p>{this.props.recipe.description}</p>
+
+              <div>
+                <h3>Ingredients</h3>
+                <table>
+                  <tbody>
+                    {this.props.recipe.ingredients.map((ing, i) => (
+                      <tr key={i}>
+                        <td>{ing.name}</td>
+                        <td>{ing.amount}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <h3>Instructions</h3>
+              <div className="content" dangerouslySetInnerHTML={this.createMarkup(this.props.recipe.instructions)} />
+              <div>
+              </div>
+              {isUploader ? (
+                <div>
+                </div>
+              ) : null
+              }
+            </div> : null
         }
       </div>
     );
   }
 }
 
-// Actions required to provide data for this component to render in sever side.
-RecipeDetailsPage.need = [({ params, state }) => {
-  return fetchRecipe(params.cuid, state.auth.token);
-}];
-
-// Retrieve data from store as props
-function mapStateToProps(state, props) {
-  return {
-    recipe: getRecipe(state, props.params.cuid),
-    user: state.auth.user
-  };
-}
-
-export default connect(mapStateToProps)(RecipeDetailsPage);
+export default connect(mapStateToProps, dispatchToProps)(RecipeDetailsPage);

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Import Components
-import RecipeList from '../../components/RecipeList';
+import RecipeList from '../../components/recipe-list/recipe-list';
 
 // Import Actions
 import { searchRecipes } from '../../recipe-thunks';

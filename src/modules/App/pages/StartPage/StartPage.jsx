@@ -6,25 +6,26 @@ import { Link } from 'react-router';
 
 // Import Components
 import RecipeQuickSearch from '../../../Recipe/components/RecipeQuickSearch/RecipeQuickSearch';
-import Menu from '../../components/Menu/Menu';
-
+import RecipeList from '../../../Recipe/components/recipe-list/recipe-list';
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryThunks';
-
-// Import Selectors
-import { getCategories } from '../../../Category/CategoryReducer';
+import { getLatestRecipes } from '../../../Recipe/recipe-thunks';
 
 import Navbar from '../../components/Navbar/Navbar';
 
 const mapStateToProps = state => ({
   categories: state.categories,
+  recipes: state.recipes.list,
 });
 
-const dispatchToProps = {};
+const dispatchToProps = {
+  fetchLatestRecipes: getLatestRecipes,
+};
 
 class StartPage extends React.Component {
   componentDidMount() {
     //this.props.dispatch(fetchCategories());
+    this.props.fetchLatestRecipes();
   }
 
   handleQuickSearch = (fields) => {
@@ -36,9 +37,6 @@ class StartPage extends React.Component {
   render() {
     return (
       <div className="">
-        {/*<div className={styles.menu}>
-          <Menu user={this.props.user} />
-        </div>'*/}
         <section className="hero is-fullheight is-primary is-bold">
           <div className="hero-head">
             <Navbar />
@@ -60,7 +58,13 @@ class StartPage extends React.Component {
           </div>
         </section>
         <div>
-          <RecipeQuickSearch handleQuickSearch={this.handleQuickSearch} categories={this.props.categories} />
+          <section className="section">
+            <div className="container">
+              <h1 className="title">Have a look at the latest added recipes</h1>
+              <RecipeList recipes={this.props.recipes} />
+            </div>
+          </section>
+          {/*<RecipeQuickSearch handleQuickSearch={this.handleQuickSearch} categories={this.props.categories} />*/}
         </div>
       </div>
     );
