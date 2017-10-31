@@ -26,9 +26,9 @@ export const DeleteButton = ({ deleteAction }) => (
   </div>
 );
 
-export const EditButton = ({ editAction }) => (
+export const EditButton = ({ onClick }) => (
   <div
-    onClick={() => editAction()}
+    onClick={onClick}
   >
     <i className="material-icons">edit</i>
     <span>edit</span>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // Import Components
 import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
+import Footer from './components/footer/footer';
 
 export class App extends Component {
   constructor(props) {

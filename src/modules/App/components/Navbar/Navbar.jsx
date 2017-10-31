@@ -17,6 +17,9 @@ const dispatchToProps = {
   setBurgerVisibility: ActionCreators.setBurgerVisibility.create,
 };
 
+const navbarStyle = {
+  borderBottom: '1px solid #363636',
+};
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -29,7 +32,7 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <nav className="navbar is-primary">
+      <nav style={navbarStyle} className="navbar is-transparent">
         <div className="container">
           <div className="navbar-brand">
             <a className="navbar-item">

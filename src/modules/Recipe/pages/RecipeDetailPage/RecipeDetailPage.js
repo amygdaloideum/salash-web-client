@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 
 // Import Components
 import { LoveButton, FavButton, DeleteButton, EditButton } from '../../../../components/InteractionButtons/InteractionButtons'
+import RecipeContent from './components/recipe-content';
 
 // Import Actions
 import { getRecipe } from '../../recipe-thunks';
@@ -20,8 +21,6 @@ const dispatchToProps = {
 class RecipeDetailsPage extends React.Component {
 
   constructor(props) { super(props); }
-
-  createMarkup = markup => ({ __html: markup });
 
   componentDidMount() {
     const pathId = this.props.params.id;
@@ -51,49 +50,25 @@ class RecipeDetailsPage extends React.Component {
     return (
       <div>
         {
-          !this.props.recipe ? <div>
-            <h1> Recipe not found</h1>
-          </div> : null
+          this.props.recipe.image ? <figure className="container is-widescreen" >
+            <img style={({ maxHeight: '100vh' })} src={this.props.recipe.image.url} />
+          </figure> : null
         }
-        {
-          this.props.recipe ?
-            <div>
-              {
-                this.props.recipe.image ? <div><img src={this.props.recipe.image.url} /></div> : null
-              }
-              <h1>{this.props.recipe.title}</h1>
-              <div>
-                {this.props.recipe.categories.map((cat, i) => (
-                  <span key={i}>{cat.name}</span>
-                ))}
-              </div>
-
-              <p>{this.props.recipe.description}</p>
-
-              <div>
-                <h3>Ingredients</h3>
-                <table>
-                  <tbody>
-                    {this.props.recipe.ingredients.map((ing, i) => (
-                      <tr key={i}>
-                        <td>{ing.name}</td>
-                        <td>{ing.amount}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <h3>Instructions</h3>
-              <div className="content" dangerouslySetInnerHTML={this.createMarkup(this.props.recipe.instructions)} />
-              <div>
-              </div>
-              {isUploader ? (
-                <div>
-                </div>
-              ) : null
-              }
-            </div> : null
-        }
+        <section className="section">
+          <div className="container">
+            {
+              !this.props.recipe ? <div>
+                <h1> Recipe not found</h1>
+              </div> : null
+            }
+            {
+              this.props.recipe ? <div>
+                <RecipeContent recipe={recipe} />
+                <EditButton onClick={this.edit} />
+              </div> : null
+            }
+          </div>
+        </section >
       </div>
     );
   }

@@ -37,7 +37,7 @@ class StartPage extends React.Component {
   render() {
     return (
       <div className="">
-        <section className="hero is-fullheight is-primary is-bold">
+        <section className="hero is-fullheight is-dark is-bold">
           <div className="hero-head">
             <Navbar />
           </div>

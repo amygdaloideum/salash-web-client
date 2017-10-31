@@ -6,15 +6,26 @@ import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm
 
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryThunks';
-import { fetchRecipe, updateRecipeRequest } from '../../recipe-thunks';
+import { getRecipe, updateRecipeRequest } from '../../recipe-thunks';
 
-// Import Selectors
-import { getCategories } from '../../../Category/CategoryReducer';
-import { getRecipe } from '../../recipe-reducer';
+const mapStateToProps = state => ({
+  recipe: state.recipes.recipe,
+  categories: state.categories,
+});
+
+const dispatchToProps = {
+  getRecipe,
+  fetchCategories,
+};
 
 export class RecipeEditPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  
   componentDidMount() {
-    this.props.dispatch(fetchCategories());
+    this.props.fetchCategories();
+    this.props.getRecipe(this.props.params.id);
   }
 
   handleCreate = (fields) => {
@@ -22,27 +33,16 @@ export class RecipeEditPage extends React.Component {
   };
 
   render() {
+    const { recipe } = this.props;
     return (
       <div>
         <h1>Edit recipe</h1>
-        <RecipeCreateForm editMode="true" initialValues={this.props.recipe} handleCreate={this.handleCreate} categories={this.props.categories} />
+        {recipe.id &&
+          <RecipeCreateForm editMode="true" initialValues={this.props.recipe} handleCreate={this.handleCreate} categories={this.props.categories} />
+        }
       </div>
     );
   }
 }
 
-// Actions required to provide data for this component to render in sever side.
-RecipeEditPage.need = [
-  () => fetchCategories(),
-  ({ params, state }) => fetchRecipe(params.cuid, state.auth.token)
-];
-
-// Retrieve data from store as props
-function mapStateToProps(state, props) {
-  return {
-    categories: getCategories(state),
-    recipe: getRecipe(state, props.params.cuid),
-  };
-}
-
-export default connect(mapStateToProps)(RecipeEditPage);
+export default connect(mapStateToProps, dispatchToProps)(RecipeEditPage);
