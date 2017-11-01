@@ -11,7 +11,7 @@ import RecipeDetailPage from './modules/Recipe/pages/RecipeDetailPage/RecipeDeta
 import RecipeCreationPage from './modules/Recipe/pages/RecipeCreationPage/RecipeCreationPage';
 import RecipeCreatedPage from './modules/Recipe/pages/RecipeCreatedPage/RecipeCreatedPage';
 import RecipeDeletedPage from './modules/Recipe/pages/RecipeDeletedPage/RecipeDeletedPage';
-import RecipeEditPage from './modules/Recipe/pages/RecipeEditPage/RecipeEditPage';
+import RecipeEditPage from './modules/Recipe/pages/recipe-edit-page/recipe-edit-page';
 import LoginPage from './modules/Auth/pages/LoginPage/LoginPage';
 import LoginLandingPage from './modules/Auth/pages/LoginLandingPage/LoginLandingPage';
 import SignupPage from './modules/Auth/pages/SignupPage/SignupPage';

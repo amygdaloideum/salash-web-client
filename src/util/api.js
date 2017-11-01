@@ -24,7 +24,15 @@ export function post(endpoint, body = {}, options = {}) {
     method: 'POST',
     body: options.multipart ? convertBodyToFormData(body) : JSON.stringify(body),
   };
-  console.log(config);
+  return fetch(`${API_URL}/${endpoint}`, config).then(response => response.json());
+}
+
+export function put(endpoint, body = {}, options = {}) {
+  const config = {
+    headers: buildHeaders(options.multipart),
+    method: 'PUT',
+    body: options.multipart ? convertBodyToFormData(body) : JSON.stringify(body),
+  };
   return fetch(`${API_URL}/${endpoint}`, config).then(response => response.json());
 }
 
