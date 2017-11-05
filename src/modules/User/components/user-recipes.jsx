@@ -9,7 +9,7 @@ export default ({ user, goToRecipe }) => (
     }
     {user.recipes && user.recipes.map((recipe, index) => (
       <div key={index}>
-        <span onClick={() => goToRecipe(recipe.cuid, recipe.slug)}>♥{recipe.loves.low} {recipe.title}</span>
+        <span onClick={() => goToRecipe(recipe.id)}>{recipe.title}</span>
       </div>
     ))}
   </div>

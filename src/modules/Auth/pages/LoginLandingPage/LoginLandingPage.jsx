@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { requestToken } from '../../AuthThunks';
+import { requestToken } from '../../auth-thunks';
 import { browserHistory } from 'react-router'
 
 const mapStateToProps = state => ({

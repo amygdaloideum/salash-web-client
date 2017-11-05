@@ -1,6 +1,6 @@
 import api from '../../util/api';
 import { push } from 'react-router-redux'
-import { ActionCreators as AuthActionCreators } from './AuthReducer';
+import { ActionCreators as AuthActionCreators } from './auth-reducer';
 
 export function requestToken(code) {
   return dispatch => {
@@ -14,9 +14,9 @@ export function requestToken(code) {
   }
 }
 
-export function logOutUser() {
+export function signOutUser() {
   return dispatch => {
-    cookie.remove('token');
-    dispatch(logout());
+    localStorage.removeItem("auth");
+    return dispatch(AuthActionCreators.userSignedOut.create());
   }
 }

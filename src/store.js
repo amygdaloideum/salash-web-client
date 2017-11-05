@@ -7,8 +7,8 @@ import app from './modules/App/app-reducer';
 import recipes from './modules/Recipe/recipe-reducer';
 import categories from './modules/Category/CategoryReducer';
 import ingredients from './modules/Ingredient/IngredientReducer';
-import auth from './modules/Auth/AuthReducer';
-import user from './modules/User/UserReducer';
+import auth from './modules/Auth/auth-reducer';
+import user from './modules/User/user-reducer';
 import { routerReducer as routing } from 'react-router-redux';
 import { reducer as form } from 'redux-form'
 

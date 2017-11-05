@@ -18,7 +18,7 @@ const dispatchToProps = {
 };
 
 const navbarStyle = {
-  borderBottom: '1px solid #363636',
+  borderBottom: '1px solid #DDD',
 };
 
 class Navbar extends React.Component {
@@ -31,13 +31,15 @@ class Navbar extends React.Component {
   }
 
   render() {
+    const user = this.props.user;
+    const isLoggedIn = user && user.id;
     return (
       <nav style={navbarStyle} className="navbar is-transparent">
         <div className="container">
           <div className="navbar-brand">
-            <a className="navbar-item">
+            <Link to="/" className="navbar-item">
               <h1 className="title">Salash</h1>
-            </a>
+            </Link>
             <span className={`navbar-burger burger ${this.props.isBurgerVisible ? 'is-active' : ''}`} onClick={this.toggleBurgerVisibility}>
               <span></span>
               <span></span>
@@ -50,14 +52,19 @@ class Navbar extends React.Component {
             <a className="navbar-item is-active">Find</a>
             <Link to="/create" className="navbar-item">Contribute</Link>
             <a className="navbar-item">Discover</a>
+            {!isLoggedIn ?
               <span className="navbar-item">
-                <Link to="/login" className="button is-primary is-inverted">
+                <Link to="/login" className="button is-outlined">
                   <span className="icon">
                     <i className="fa fa-github"></i>
                   </span>
                   <span>Login</span>
                 </Link>
-              </span>
+              </span> : <Link to={`/user/${user.id}`} className="navbar-item ">
+                <i className="fa fa-lg fa-account"></i>
+                {user.username}
+            </Link>
+            }
           </div>
         </div>
       </nav>

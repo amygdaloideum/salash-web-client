@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getMessage } from '../../AuthReducer';
+import { getMessage } from '../../auth-reducer';
 import env from '../../../../env';
 
 class LoginPage extends React.Component {

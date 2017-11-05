@@ -3,6 +3,7 @@ import ActionCreator from '../../util/action-creator';
 export const ActionCreators = {
   tokenRequested: new ActionCreator('TOKEN_REQUESTED'),
   tokenRecieved: new ActionCreator('TOKEN_RECIEVED'),
+  userSignedOut: new ActionCreator('USER_SIGNED_OUT'),
 };
 
 const initialState = {
@@ -22,12 +23,14 @@ const AuthReducer = (state = initialState, action) => {
       partialState = { fetching: true };
       break;
     case ActionCreators.tokenRecieved.type:
-      partialState = { 
+      partialState = {
         fetching: false,
         token: action.payload.token,
         user: action.payload.user,
       };
       break;
+    case ActionCreators.userSignedOut.type:
+      return initialState;
     default:
       return state;
   }

@@ -15,7 +15,7 @@ import RecipeEditPage from './modules/Recipe/pages/recipe-edit-page/recipe-edit-
 import LoginPage from './modules/Auth/pages/LoginPage/LoginPage';
 import LoginLandingPage from './modules/Auth/pages/LoginLandingPage/LoginLandingPage';
 import SignupPage from './modules/Auth/pages/SignupPage/SignupPage';
-import UserPage from './modules/User/pages/UserPage';
+import UserPage from './modules/User/pages/user-page';
 import NotFoundPage from './modules/Auth/pages/NotFoundPage/NotFoundPage';
 
 const requireAuth = (nextState, replace, user) => {

@@ -20,6 +20,4 @@ const UserReducer = (state = initialState, action) => {
   return { ...state, ...partialState };
 };
 
-export const getUser = state => state.user;
-
 export default UserReducer;
