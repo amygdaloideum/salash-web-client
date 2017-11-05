@@ -9,7 +9,7 @@ import RecipeCreateForm from '../../components/RecipeCreateForm/RecipeCreateForm
 // Import Actions
 import { fetchCategories } from '../../../Category/CategoryThunks';
 import { fetchIngredients } from '../../../Ingredient/IngredientTunks';
-import { getRecipe, updateRecipe } from '../../recipe-thunks';
+import { getRecipe, updateRecipe, deleteRecipe } from '../../recipe-thunks';
 
 const htmlToEditorState = html => {
   const blocksFromHtml = htmlToDraft(html);
@@ -47,8 +47,10 @@ const mapStateToProps = state => ({
 
 const dispatchToProps = {
   getRecipe,
+  updateRecipe,
   fetchCategories,
   fetchIngredients,
+  deleteRecipe,
 };
 
 export class RecipeEditPage extends React.Component {
@@ -62,8 +64,12 @@ export class RecipeEditPage extends React.Component {
   }
 
   handleCreate = fields => {
-    this.props.dispatch(updateRecipe(this.props.params.id, fields));
+    this.props.updateRecipe(this.props.params.id, fields);
   };
+
+  deleteRecipe = () => {
+    this.props.deleteRecipe(this.props.params.id);
+  }
 
   getIngredients = name => this.props.fetchIngredients(name)
     .then(({ payload }) => payload.map(ingredient => ({ value: ingredient.id, label: ingredient.name })))
@@ -82,13 +88,13 @@ export class RecipeEditPage extends React.Component {
   }
 
   render() {
-    const { recipe } = this.props;
+    const { recipe, deleteRecipe } = this.props;
     const initialValues = this.prepareForEdit(recipe);
     return (
       <div>
         <h1>Edit recipe</h1>
         {recipe.id &&
-          <RecipeCreateForm editMode="true" initialValues={initialValues} getIngredients={this.getIngredients} handleCreate={this.handleCreate} categories={this.props.categories} />
+          <RecipeCreateForm editMode="true" initialValues={initialValues} deleteRecipe={this.deleteRecipe} getIngredients={this.getIngredients} handleCreate={this.handleCreate} categories={this.props.categories} />
         }
       </div>
     );

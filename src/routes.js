@@ -32,11 +32,11 @@ export default user => (
     <IndexRoute component={startPage} />
     <Route path="/find" component={RecipeSearchPage} />
     <Route path="/search" component={RecipeListPage} />
+    <Route path="/recipes/deleted" component={RecipeDeletedPage} />
+    <Route path="/recipes/created" component={RecipeCreatedPage} />
     <Route path="/recipes/:id" component={RecipeDetailPage} />
     <Route path="/create" component={RecipeCreationPage}
     />
-    <Route path="/created" component={RecipeCreatedPage} />
-    <Route path="/recipes/deleted" component={RecipeDeletedPage} />
     <Route
       path="/recipes/edit/:id" component={RecipeEditPage}
       onEnter={(nextState, replace) => requireAuth(nextState, replace, user)}

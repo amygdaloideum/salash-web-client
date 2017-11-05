@@ -36,6 +36,14 @@ export function put(endpoint, body = {}, options = {}) {
   return fetch(`${API_URL}/${endpoint}`, config).then(response => response.json());
 }
 
+export function fDelete(endpoint) {
+  const config = {
+    headers: buildHeaders(),
+    method: 'DELETE',
+  };
+  return fetch(`${API_URL}/${endpoint}`, config).then(response => response.json());
+}
+
 // Helpers
 
 export function convertBodyToFormData(body) {
@@ -50,5 +58,5 @@ export function convertBodyToFormData(body) {
 }
 
 export default {
-  get, post,
+  get, post, put, delete: fDelete
 };

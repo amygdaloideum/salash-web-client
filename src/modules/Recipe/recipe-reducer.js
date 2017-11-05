@@ -3,6 +3,7 @@ import ActionCreator from '../../util/action-creator';
 export const ActionCreators = {
   recipesRecieved: new ActionCreator('RECIPES_RECIEVED'),
   recipeRecieved: new ActionCreator('RECIPE_RECIEVED'),
+  recipeDeleted: new ActionCreator('RECIPE_DELETED'),
 };
 
 const initialState = {

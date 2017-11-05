@@ -3,6 +3,7 @@ import { Field, Fields, FieldArray, reduxForm } from 'redux-form';
 import RecipeEditor from '../RecipeEditor/RecipeEditor';
 import CategorySelect from '../../../Category/components/CategorySelect';
 import { renderTextarea, renderInput, SubmitButton } from '../../../../components/form/formInputs';
+import { DeleteButton } from '../../../../components/InteractionButtons/InteractionButtons';
 import IngredientAndAmountSelect from '../../../Ingredient/components/IngredientAndAmountSelect/IngredientAndAmountSelect';
 import FileUpload from '../../../../components/form/file-upload';
 
@@ -20,7 +21,7 @@ const validate = values => {
   return errors;
 }
 
-let RecipeCreateForm = ({ editMode, handleSubmit, handleCreate, categories, invalid, submitting, pristine, getIngredients, getReport }) => (
+let RecipeCreateForm = ({ editMode, handleSubmit, handleCreate, categories, invalid, submitting, pristine, getIngredients, getReport, deleteRecipe }) => (
   <form onSubmit={handleSubmit(handleCreate)}>
     <h1 className="title is-4">General</h1>
     <Field name="title" icon="fa-pencil-square-o" component={renderInput} type="text" label="Title" />
@@ -38,7 +39,9 @@ let RecipeCreateForm = ({ editMode, handleSubmit, handleCreate, categories, inva
 
     <h1 className="title is-4">Image</h1>
     <Field name="image" component={FileUpload} />
-
+    { editMode && 
+      <DeleteButton text ="delete recipe" onClick={deleteRecipe}/>
+    }
     <SubmitButton className="button" text={editMode ? 'save changes' : 'add recipe'} disabled={false/*{ invalid, submitting, pristine }*/} />
   </form>
 );

@@ -17,12 +17,10 @@ export const FavButton = ({ favoriteAction, unfavoriteAction, interactions }) =>
   </div>
 );
 
-export const DeleteButton = ({ deleteAction }) => (
-  <div
-    onClick={() => deleteAction()}
-  >
+export const DeleteButton = ({ onClick, text }) => (
+  <div onClick={onClick}>
     <i className="material-icons">delete_forever</i>
-    <span>delete</span>
+    <span>{text}</span>
   </div>
 );
 

@@ -12,7 +12,7 @@ export function createRecipe(recipeFormData) {
     return uploadImage({ recipe: formData })
       .then(({ recipe }) => api.post('recipes', recipe))
       .then(res => {
-        console.log(res);
+        browserHistory.push('/recipes/created');
       });
   };
 }
@@ -28,6 +28,16 @@ export function updateRecipe(id, recipeFormData) {
       .then(({ recipe, id }) => api.put(`recipes/${id}`, recipe))
       .then(res => {
         console.log(res);
+      });
+  };
+}
+
+export function deleteRecipe(id) {
+  return dispatch => {
+    return api.delete(`recipes/${id}`)
+      .then(res => {
+        dispatch(ActionCreators.recipeDeleted.create(id));
+        browserHistory.push('/recipes/deleted');
       });
   };
 }
