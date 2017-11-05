@@ -56,6 +56,16 @@ export function getLatestRecipes() {
   };
 }
 
+export function interactWithRecipe(type, id) {
+  return dispatch => api.post(`interactions/${type}/${id}`)
+    .then(recipe => dispatch(ActionCreators.recipeInteractedWith.create({type, id})));
+}
+
+export function unInteractWithRecipe(type, id) {
+  return dispatch => api.delete(`interactions/${type}/${id}`)
+    .then(recipe => dispatch(ActionCreators.recipeUninteractedWith.create({type, id})));
+}
+
 function uploadImage({ recipe, id }) {
   return new Promise((resolve, reject) => {
     if (recipe.image) {

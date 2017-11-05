@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 // Import Components
-import { LoveButton, FavButton, DeleteButton, EditButton } from '../../../../components/InteractionButtons/InteractionButtons'
+import { LikeButton, BinderButton, DeleteButton, EditButton } from '../../../../components/InteractionButtons/InteractionButtons'
 import RecipeContent from './components/recipe-content';
 
 // Import Actions
-import { getRecipe } from '../../recipe-thunks';
+import { getRecipe, interactWithRecipe, unInteractWithRecipe } from '../../recipe-thunks';
 
 const mapStateToProps = state => ({
   recipe: state.recipes.recipe,
@@ -16,6 +16,8 @@ const mapStateToProps = state => ({
 
 const dispatchToProps = {
   getRecipe,
+  interactWithRecipe,
+  unInteractWithRecipe,
 };
 
 class RecipeDetailsPage extends React.Component {
@@ -27,9 +29,9 @@ class RecipeDetailsPage extends React.Component {
     this.props.getRecipe(pathId);
   }
 
-  love = () => { }
+  like = () => this.props.interactWithRecipe('like', this.props.params.id);
 
-  unlove = () => { }
+  unlike = () => this.props.unInteractWithRecipe('like', this.props.params.id);
 
   favorite = () => { }
 
@@ -64,7 +66,11 @@ class RecipeDetailsPage extends React.Component {
             {
               this.props.recipe ? <div>
                 <RecipeContent recipe={recipe} />
-                <EditButton onClick={this.edit} />
+                <LikeButton interactions={recipe.interactions} likeAction={this.like} unlikeAction={this.unlike}/>
+                <BinderButton interactions={({})} />
+                { isUploader &&
+                  <EditButton onClick={this.edit} />
+                }
               </div> : null
             }
           </div>

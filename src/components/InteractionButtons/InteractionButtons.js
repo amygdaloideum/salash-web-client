@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
-export const LoveButton = ({ loveAction, unloveAction, interactions }) => (
+export const LikeButton = ({ likeAction, unlikeAction, interactions }) => (
   <div
-    onClick={() => { interactions.love ? unloveAction() : loveAction() }}>
-    {interactions.love}
-    <i className="material-icons">{interactions.love ? 'favorite' : 'favorite_outline'}</i>
-    <span>love</span>
+    onClick={() => { interactions.like ? unlikeAction() : likeAction() }}>
+    {interactions.like}
+    <i className="material-icons">{interactions.like ? 'favorite' : 'favorite_outline'}</i>
+    <span>like</span>
   </div>
 );
 
-export const FavButton = ({ favoriteAction, unfavoriteAction, interactions }) => (
+export const BinderButton = ({ bindereAction, unBinderAction, interactions }) => (
   <div
     onClick={() => { interactions.favorite ? unfavoriteAction() : favoriteAction() }}>
     <i className="material-icons">{interactions.favorite ? 'star' : 'star_outline'}</i>
-    <span>favorite</span>
+    <span>save</span>
   </div>
 );
 
@@ -25,9 +25,7 @@ export const DeleteButton = ({ onClick, text }) => (
 );
 
 export const EditButton = ({ onClick }) => (
-  <div
-    onClick={onClick}
-  >
+  <div onClick={onClick}>
     <i className="material-icons">edit</i>
     <span>edit</span>
   </div>
